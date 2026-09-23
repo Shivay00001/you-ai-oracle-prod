@@ -1,5 +1,7 @@
 FROM python:3.10-slim
 WORKDIR /app
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
-RUN if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
-CMD ["python", "main.py"]
+ENV PYTHONUNBUFFERED=1
+CMD ["python", "you_ai_oracle_prod.py", "--help"]
